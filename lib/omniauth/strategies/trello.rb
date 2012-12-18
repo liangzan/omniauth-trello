@@ -5,17 +5,17 @@ module OmniAuth
   module Strategies
     class Trello < OmniAuth::Strategies::OAuth
       option :name, 'trello'
-      
+
       option :client_options, {
         :authorize_path => '/1/OAuthAuthorizeToken',
         :request_token_path => '/1/OAuthGetRequestToken',
         :access_token_path => '/1/OAuthGetAccessToken',
         :site => 'https://trello.com'
-			}
-
-      uid { 
-        raw_info['id']
       }
+
+      uid do
+        raw_info['id']
+      end
 
       info do
         {
@@ -31,13 +31,16 @@ module OmniAuth
       end
 
       def request_phase
-        options[:authorize_params] = options[:scope] if options[:scope]
-        super
+        if request.params["scope"]
+          super.merge({:scope => request.params["scope"]})
+        else
+          super
+        end
       end
-            
+
       extra do
         {
-          :raw_info => raw_info 
+          :raw_info => raw_info
         }
       end
 
