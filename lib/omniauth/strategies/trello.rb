@@ -31,12 +31,12 @@ module OmniAuth
       end
 
       def request_phase
-        if request.params["scope"]
-          super.merge({:scope => request.params["scope"]})
-        else
-          super
-        end
-      end
+        options[:authorize_params] = {
+          :scope => options["scope"],
+          :name => options["name"]
+        }
+        super
+       end
 
       extra do
         {
