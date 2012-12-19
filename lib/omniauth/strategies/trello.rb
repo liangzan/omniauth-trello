@@ -33,7 +33,7 @@ module OmniAuth
       def request_phase
         options[:authorize_params] = {
           :scope => options["scope"],
-          :name => options["name"]
+          :name => options["app_name"]
         }
         super
        end
