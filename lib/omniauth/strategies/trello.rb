@@ -4,6 +4,8 @@ require 'multi_json'
 module OmniAuth
   module Strategies
     class Trello < OmniAuth::Strategies::OAuth
+      EXPIRATION_PERIOD = '30days'
+
       option :name, 'trello'
 
       option :client_options, {
@@ -33,7 +35,8 @@ module OmniAuth
       def request_phase
         options[:authorize_params] = {
           :scope => options["scope"],
-          :name => options["app_name"]
+          :name => options["app_name"],
+          :expiration => options["expiration"] || EXPIRATION_PERIOD
         }
         super
        end
