@@ -19,6 +19,11 @@ gem install liangzan_omniauth-trello
 
 ``` ruby
 use OmniAuth::Builder do
-  provider :trello, ENV['TRELLO_KEY'], ENV['TRELLO_SECRET'], scope: 'read,write', app_name: 'YourApp', expiration: '30days'
+  provider :trello,
+  ENV['TRELLO_KEY'],
+  ENV['TRELLO_SECRET'],
+  scope: 'read,write',
+  app_name: 'YourApp',
+  expiration: '30days'
 end
 ```
