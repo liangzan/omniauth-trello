@@ -24,6 +24,8 @@ use OmniAuth::Builder do
   ENV['TRELLO_SECRET'],
   scope: 'read,write',
   app_name: 'YourApp',
-  expiration: '30days'
+  expiration: 'never'
 end
 ```
+
+If you don't set expiration, it defaults to __30days__. The only other workable option is __never__.
